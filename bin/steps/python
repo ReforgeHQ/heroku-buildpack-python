@@ -112,6 +112,10 @@ if [ ! "$SKIP_INSTALL" ]; then
 
     mcount "version.python.$PYTHON_VERSION"
 
+    if [[ "$PYTHON_VERSION" == "python-3.8.1" ]]; then
+      VENDORED_PYTHON="https://reforge-docker-images.s3.amazonaws.com/heroku/python-buildpacks/runtimes/python-3.8.1.tar.gz"
+    fi
+
     if ! curl "${VENDORED_PYTHON}" -s | tar zxv -C .heroku/python &> /dev/null; then
       puts-warn "Requested runtime ($PYTHON_VERSION) is not available for this stack ($STACK)."
       puts-warn "Aborting.  More info: https://devcenter.heroku.com/articles/python-support"
